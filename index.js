@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Render the index page with posts
 app.get("/", (req, res) => {
-  res.render("index.ejs", { posts: posts });
+  res.render("index.ejs");
 });
 
 // Render the about page
@@ -34,7 +34,7 @@ app.get("/contact", (req, res) => {
 
 // Render the form to create a new post
 app.get("/posts/new", (req, res) => {
-  res.render("create-post.ejs");
+  res.render("create-post.ejs", { posts: posts });
 });
 
 // Create a new post
@@ -43,7 +43,7 @@ app.post("/create-post", (req, res) => {
   const postId = generateUniqueId(); // Generate a unique ID for the post
   const newPost = { id: postId, title, content };
   posts.push(newPost); // Add the new post to the posts array
-  res.redirect("/"); // Redirect back to the index page
+  res.redirect("/posts/new"); // Redirect back to the index page
 });
 
 // Render the edit form for a specific post
@@ -69,7 +69,7 @@ app.post("/update/:id", (req, res) => {
     posts[index].content = content;
   }
 
-  res.redirect("/");
+  res.redirect("/posts/new");
 });
 
 // Delete a specific post
@@ -78,7 +78,7 @@ app.post("/posts/:id/delete", (req, res) => {
   const index = posts.findIndex((post) => post.id === postId);
   if (index !== -1) {
     posts.splice(index, 1);
-    res.redirect("/"); // Redirect back to the index page after deletion
+    res.redirect("/posts/new"); // Redirect back to the index page after deletion
   } else {
     res.status(404).send("Post not found");
   }
