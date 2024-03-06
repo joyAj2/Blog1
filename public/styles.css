@@ -1,3 +1,6 @@
+.container.mt-5 {
+  min-height: 38rem; /* Adjust the value as needed */
+}
 .card {
   margin-bottom: 20px;
   border-radius: 15px;
@@ -21,4 +24,16 @@
 .btn-primary:hover {
   background-color: #0056b3;
   border-color: #0056b3;
+}
+.site-footer {
+  bottom: 0;
+  width: 100%;
+  background-color: #EBF400;
+  padding: 20px 0; /* Adjust the padding as needed */
+  text-align: center;
+}
+
+.site-footer p {
+  font-size: 14px; /* Adjust font size */
+  color: #6c757d; /* Text color */
 }

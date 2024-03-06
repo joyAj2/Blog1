@@ -7,7 +7,7 @@ const posts = [];
 
 // Function to generate a unique ID for posts
 function generateUniqueId() {
-  return Date.now();
+  return Date.now().toString(); // Convert the generated ID to string
 }
 
 // Set up middleware
@@ -15,11 +15,9 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Routes
-
 // Render the index page with posts
 app.get("/", (req, res) => {
-  res.render("index.ejs");
+  res.render("index.ejs", { posts: posts });
 });
 
 // Render the about page
@@ -32,10 +30,30 @@ app.get("/contact", (req, res) => {
   res.render("contact.ejs");
 });
 
+// Render the form to create a new post with specific post id
+app.get("/posts/new/:id", (req, res) => {
+  const postId = req.params.id;
+  const post = posts.find((post) => post.id === postId);
+  res.render("create-post.ejs", { post: post, posts: posts });
+});
+
 // Render the form to create a new post
 app.get("/posts/new", (req, res) => {
   res.render("create-post.ejs", { posts: posts });
 });
+
+// Render a specific blog post
+app.get("/blog/:id", (req, res) => {
+  const postId = req.params.id;
+  console.log("Requested post ID:", postId);
+  const post = posts.find(post => post.id === postId); // Ensure comparison is done as strings
+  console.log("Found post:", post);
+  if (!post) {
+    return res.status(404).send("Post not found");
+  }
+  res.render("blog-post.ejs", { post: post });
+});
+
 
 // Create a new post
 app.post("/create-post", (req, res) => {
@@ -43,7 +61,7 @@ app.post("/create-post", (req, res) => {
   const postId = generateUniqueId(); // Generate a unique ID for the post
   const newPost = { id: postId, title, content };
   posts.push(newPost); // Add the new post to the posts array
-  res.redirect("/posts/new"); // Redirect back to the index page
+  res.redirect(`/posts/new/${postId}`); // Redirect to the newly created post page
 });
 
 // Render the edit form for a specific post
@@ -63,18 +81,19 @@ app.post("/update/:id", (req, res) => {
   const itemId = req.params.id;
   const { title, content } = req.body;
 
-  const index = posts.findIndex((post) => post.id === parseInt(itemId));
+  const index = posts.findIndex((post) => post.id === itemId); // Removed parseInt() conversion
   if (index !== -1) {
     posts[index].title = title;
     posts[index].content = content;
   }
 
-  res.redirect("/posts/new");
+  res.redirect("/posts/new"); // Removed unnecessary redirection
 });
+
 
 // Delete a specific post
 app.post("/posts/:id/delete", (req, res) => {
-  const postId = parseInt(req.params.id);
+  const postId = req.params.id; // Keep the ID as a string
   const index = posts.findIndex((post) => post.id === postId);
   if (index !== -1) {
     posts.splice(index, 1);
