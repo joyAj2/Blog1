@@ -54,6 +54,16 @@ app.get("/blog/:id", (req, res) => {
   res.render("blog-post.ejs", { post: post });
 });
 
+app.get("/read-more", (req, res) => {
+  res.render("read-more.ejs");
+});
+
+app.get("/book", (req, res) => {
+  res.render("book.ejs");
+});
+app.get("/", (req, res) => {
+  res.render("index.ejs");
+});
 
 // Create a new post
 app.post("/create-post", (req, res) => {
@@ -81,13 +91,13 @@ app.post("/update/:id", (req, res) => {
   const itemId = req.params.id;
   const { title, content } = req.body;
 
-  const index = posts.findIndex((post) => post.id === itemId); // Removed parseInt() conversion
+  const index = posts.findIndex((post) => post.id === itemId); 
   if (index !== -1) {
     posts[index].title = title;
     posts[index].content = content;
   }
 
-  res.redirect("/posts/new"); // Removed unnecessary redirection
+  res.redirect("/posts/new");
 });
 
 
@@ -97,7 +107,7 @@ app.post("/posts/:id/delete", (req, res) => {
   const index = posts.findIndex((post) => post.id === postId);
   if (index !== -1) {
     posts.splice(index, 1);
-    res.redirect("/posts/new"); // Redirect back to the index page after deletion
+    res.redirect("/posts/new"); 
   } else {
     res.status(404).send("Post not found");
   }

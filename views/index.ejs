@@ -1,13 +1,170 @@
 <!-- index.ejs -->
 
 <%- include('partials/header.ejs') %>
-  <ul>
-    <% posts.forEach(post=> { %>
-      <li>
-        <a href="/blog/<%= post.id %>">
-          <%= post.title %>
+  <div class="position-relative overflow-hidden p-0 p-md-5 m-md-0 text-center bg-body-tertiary">
+    <div class="col-md-6 p-lg-5 mx-auto my-5">
+      <h1 class="display-3 fw-bold">Tailored for bloggers, with bloggers in mind.</h1>
+      <h5 class="fw-normal text-muted mb-3">Create anything you desire with My Blog: Your blogging journey starts here.
+      </h5>
+      <div class="d-flex gap-3 justify-content-center lead fw-normal">
+        <a class="icon-link" href="/posts/new">
+          create post
+          <svg class="bi">
+            <use xlink:href="#chevron-right"></use>
+          </svg>
         </a>
-      </li>
-      <% }); %>
-  </ul>
+        <a class="icon-link" href="/contact">
+          Contact
+          <svg class="bi">
+            <use xlink:href="#chevron-right"></use>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="product-device shadow-sm d-none d-md-block"></div>
+    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+  </div>
+  <!-- second section -->
+  <div class="container px-4 py-5">
+    <h2 class="pb-2 border-bottom">Explore the realm of current events.</h2>
+
+    <div class="row row-cols-1 row-cols-md-2 align-items-md-start g-5 py-5"> <!-- Adjusted align-items-md-start -->
+      <div class="col d-flex flex-column align-items-start gap-2">
+        <h2 class="fw-bold text-body-emphasis">Recent Posts</h2>
+        <ul>
+          <% posts.forEach(post=> { %>
+            <li>
+              <a href="/blog/<%= post.id %>" class="post-link">
+                <%= post.title %>
+              </a>
+            </li>
+            <% }); %>
+        </ul>
+      </div>
+
+      <!-- Featured Content Section -->
+      <div class="col-md-8">
+        <h2 class="mb-4">Featured Content</h2>
+        <div class="row">
+          <!-- First Featured Content Card -->
+          <div class="col-md-6 mb-4">
+            <div class="card featured-content">
+              <img src="/images/pexels-bich-tran-1059380.jpg" class="card-img-top" alt="Featured Image 1">
+              <div class="card-body">
+                <h5 class="card-title">The Power of Affirmative Action</h5>
+                <p class="card-text">Understanding the crucial role of affirmative action in promoting diversity,
+                  equity. Exploring its impact on leveling the playing field and creating opportunities
+                  for
+                  underrepresented groups, thereby fostering a more just and equitable society for all.</p>
+                <a href="/read-more" class="btn btn-primary">Read More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Second Featured Content Card -->
+          <div class="col-md-6">
+            <div class="card featured-content">
+              <img src="/images/pexels-dom-j-45718.jpg" class="card-img-top" alt="Featured Image 2">
+              <div class="card-body">
+                <h5 class="card-title">Unveiling Literary Wonders
+                </h5>
+                <p class="card-text">Books are portals to uncharted worlds, offering solace, knowledge, and adventure
+                  within their pages. Through them, we
+                  explore distant lands and unlock the mysteries of the human
+                  experience. They ignite
+                  our imagination, broaden our perspectives, and inspire us to dream.
+                </p>
+                <a href="/book" class="btn btn-primary">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- third section -->
+  <div class="grey-section">
+  <div class="container px-4 py-5" id="custom-cards">
+    <h2 class="pb-2 border-bottom">Featured Blog Posts</h2>
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5 grey-section">
+      <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+          style="background-image: url('/images/blog-post-1.jpg'); background-size: cover;">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">The Power of Affirmative Action</h3>
+            <ul class="d-flex list-unstyled mt-auto">
+              <li class="me-auto">
+                <i class="fa fa-users fa-2x" style="color: black;"></i>
+              </li>
+              <li class="d-flex align-items-center me-3">
+                <svg class="bi me-2" width="1em" height="1em">
+                  <use xlink:href="#geo-fill"></use>
+                </svg>
+                <small>California</small>
+              </li>
+              <li class="d-flex align-items-center">
+                <svg class="bi me-2" width="1em" height="1em">
+                  <use xlink:href="#calendar3"></use>
+                </svg>
+                <small>5d ago</small>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+          style="background-image: url('/images/blog-post-2.jpg'); background-size: cover;">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Unlocking the Magic of Reading</h3>
+            <ul class="d-flex list-unstyled mt-auto">
+              <li class="me-auto">
+                <i class="fa fa-envelope-open fa-2x"></i>
+              </li>
+              <li class="d-flex align-items-center me-3">
+                <svg class="bi me-2" width="1em" height="1em">
+                  <use xlink:href="#geo-fill"></use>
+                </svg>
+                <small>New York</small>
+              </li>
+              <li class="d-flex align-items-center">
+                <svg class="bi me-2" width="1em" height="1em">
+                  <use xlink:href="#calendar3"></use>
+                </svg>
+                <small>3d ago</small>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+          style="background-image: url('/images/blog-post-3.jpg'); background-size: cover;">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">The Transformative Power of Storytelling</h3>
+            <ul class="d-flex list-unstyled mt-auto">
+              <li class="me-auto">
+                <i class="fa fa-heart fa-2x" style="color: white;"></i>
+              <li class="d-flex align-items-center me-3">
+                <svg class="bi me-2" width="1em" height="1em">
+                  <use xlink:href="#geo-fill"></use>
+                </svg>
+                <small>London</small>
+              </li>
+              <li class="d-flex align-items-center">
+                <svg class="bi me-2" width="1em" height="1em">
+                  <use xlink:href="#calendar3"></use>
+                </svg>
+                <small>2d ago</small>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
   <%- include('partials/footer.ejs') %>

@@ -1,3 +1,7 @@
+body {
+  font-family: "source-serif-pro", Georgia, Cambria, "Times New Roman", Times,
+    serif;
+}
 .container.mt-5 {
   min-height: 38rem; /* Adjust the value as needed */
 }
@@ -28,7 +32,7 @@
 .site-footer {
   bottom: 0;
   width: 100%;
-  background-color: #EBF400;
+  background-color: #ebf400;
   padding: 20px 0; /* Adjust the padding as needed */
   text-align: center;
 }
@@ -36,4 +40,14 @@
 .site-footer p {
   font-size: 14px; /* Adjust font size */
   color: #6c757d; /* Text color */
+}
+.bg-body-tertiary {
+  background-color: rgb(166, 246, 255);
+}
+.post-link {
+  color: rgba(0, 0, 0, 0.7) !important; /* Set link color */
+  list-style: none !important; /* Remove bullet points */
+}
+.grey-section {
+    background-color: rgb(245, 125, 31); 
 }
